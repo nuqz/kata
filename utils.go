@@ -130,6 +130,9 @@ func (expr *Expression) Result() string {
 		out = expr.Op1.V + expr.Op2.V
 	case "-":
 		out = expr.Op1.V - expr.Op2.V
+		if out < 0 && expr.Op1.c == Roman {
+			panic("negative result when using Roman numbers")
+		}
 	case "*":
 		out = expr.Op1.V * expr.Op2.V
 	case "/":
